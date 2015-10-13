@@ -3,19 +3,33 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Node实现串行化流程控制 | 记忆的残骸</title>
+  <title>nginx学习 | 记忆的残骸</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
+  <meta name="description" content="1. 什么是nginx一个服务器软件，apache/tomcat/iis
+nginx是一款高性能的服务器软件可以发布网站实现负载均衡，反向代理服务器也可以是一个代理邮件服务器负载均衡：为了减小服务器压力，需要将用户访问信息分别引像服务器集群，减小服务器压力，提高响应效率，避免服务器崩溃
+
+iis:只能部署在window上，不如linux做服务器好
+tomcat：面向java重量级
+apache：稳">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Node实现串行化流程控制">
-<meta property="og:url" content="http://wandergis.github.io/2015/09/28/Node实现串行化流程控制/index.html">
+<meta property="og:title" content="nginx学习">
+<meta property="og:url" content="http://wandergis.github.io/2015/10/13/nginx学习/index.html">
 <meta property="og:site_name" content="记忆的残骸">
-<meta property="og:description">
-<meta property="og:image" content="http://wandergis.github.io/img/1.png">
-<meta property="og:updated_time" content="2015-09-28T08:15:06.000Z">
+<meta property="og:description" content="1. 什么是nginx一个服务器软件，apache/tomcat/iis
+nginx是一款高性能的服务器软件可以发布网站实现负载均衡，反向代理服务器也可以是一个代理邮件服务器负载均衡：为了减小服务器压力，需要将用户访问信息分别引像服务器集群，减小服务器压力，提高响应效率，避免服务器崩溃
+
+iis:只能部署在window上，不如linux做服务器好
+tomcat：面向java重量级
+apache：稳">
+<meta property="og:updated_time" content="2015-10-13T08:09:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Node实现串行化流程控制">
-<meta name="twitter:description">
+<meta name="twitter:title" content="nginx学习">
+<meta name="twitter:description" content="1. 什么是nginx一个服务器软件，apache/tomcat/iis
+nginx是一款高性能的服务器软件可以发布网站实现负载均衡，反向代理服务器也可以是一个代理邮件服务器负载均衡：为了减小服务器压力，需要将用户访问信息分别引像服务器集群，减小服务器压力，提高响应效率，避免服务器崩溃
+
+iis:只能部署在window上，不如linux做服务器好
+tomcat：面向java重量级
+apache：稳">
   
     <link rel="alternative" href="/atom.xml" title="记忆的残骸" type="application/atom+xml">
   
@@ -192,11 +206,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-Node实现串行化流程控制" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-nginx学习" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/09/28/Node实现串行化流程控制/" class="article-date">
-  	<time datetime="2015-09-28T07:59:33.000Z" itemprop="datePublished">2015-09-28</time>
+      <a href="/2015/10/13/nginx学习/" class="article-date">
+  	<time datetime="2015-10-13T03:10:21.000Z" itemprop="datePublished">2015-10-13</time>
 </a>
     </div>
   
@@ -209,7 +223,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Node实现串行化流程控制
+      nginx学习
     </h1>
   
 
@@ -218,12 +232,12 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
 	</div>
 
         
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/技术相关/">技术相关</a>
+	<a class="article-category-link" href="/categories/web服务器/">web服务器</a>
 	</div>
 
 
@@ -233,7 +247,27 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/img/1.png" alt="工作机制"></p>
+        <h2 id="1-_什么是nginx">1. 什么是nginx</h2><p>一个服务器软件，apache/tomcat/iis</p>
+<p>nginx是一款高性能的服务器软件<br>可以发布网站实现负载均衡，反向代理服务器<br>也可以是一个代理邮件服务器<br>负载均衡：为了减小服务器压力，需要将用户访问信息分别引像服务器集群，减小服务器压力，提高响应效率，避免服务器崩溃</p>
+<ul>
+<li>iis:只能部署在window上，不如linux做服务器好</li>
+<li>tomcat：面向java重量级</li>
+<li>apache：稳定、开源、跨平台，不支持高并发</li>
+<li>nginx：轻量，高性能、高并发，内存消耗少，成本低，rewrite功能不够强大，模块没有apache多</li>
+</ul>
+<h2 id="2-_nginx服务器搭建">2. nginx服务器搭建</h2><p>linux系统中搭建nginx服务器</p>
+<ol>
+<li>下载源码编译nginx-1.8.0.tar.gz  <code>tar -zxvf nginx-1.8.0.tar.gz</code></li>
+<li><code>cd nginx-1.8.0&amp;&amp;./config</code>(保证有gcc gcc-c++)</li>
+<li><code>make</code>(pre/lib模块安装)</li>
+<li><code>make install</code></li>
+</ol>
+<h2 id="3-_启动、停止、重载配置">3. 启动、停止、重载配置</h2><ol>
+<li><code>nginx -c  path/to/nginx.conf</code></li>
+<li><code>nginx -s stop或者nginx -s quit或者pkill -9 nginx</code></li>
+<li><code>nginx -s reload</code></li>
+<li>检查配置文件是否正确 <code>nginx -t</code></li>
+</ol>
 
       
     </div>
@@ -243,18 +277,18 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/10/13/gulp使用备忘/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2015/10/13/webstorm相关问题/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          gulp使用备忘
+          webstorm相关问题
         
       </div>
     </a>
   
   
-    <a href="/2015/09/28/node实战学习笔记/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">node实战学习笔记</div>
+    <a href="/2015/10/13/gulp使用备忘/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">gulp使用备忘</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -279,7 +313,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Node实现串行化流程控制" data-title="Node实现串行化流程控制" data-url="http://wandergis.github.io/2015/09/28/Node实现串行化流程控制/"></div>
+	<div class="ds-thread" data-thread-key="nginx学习" data-title="nginx学习" data-url="http://wandergis.github.io/2015/10/13/nginx学习/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

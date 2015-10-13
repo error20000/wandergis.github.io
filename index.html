@@ -116,7 +116,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/ReactNative/" style="font-size: 10px;">ReactNative</a> <a href="/tags/gulp/" style="font-size: 10px;">gulp</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+						<a href="/tags/ReactNative/" style="font-size: 10px;">ReactNative</a> <a href="/tags/gulp/" style="font-size: 10px;">gulp</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/webstorm/" style="font-size: 10px;">webstorm</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
 					</div>
 				</section>
 				
@@ -191,6 +191,146 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-webstorm相关问题" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/10/13/webstorm相关问题/" class="article-date">
+  	<time datetime="2015-10-13T08:10:09.000Z" itemprop="datePublished">2015-10-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/10/13/webstorm相关问题/">webstorm相关问题</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="webstorm遇到new_project时候express等项目获取不到版本问题的解决办法">webstorm遇到new project时候express等项目获取不到版本问题的解决办法</h2><p>这是由于npm的源被设置为淘宝的源的原因<br>执行<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="type">list</span></span><br></pre></td></tr></table></figure></p>
+<p>如果有<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="setting">registry = <span class="value"><span class="string">"https://registry.npm.taobao.org/"</span></span></span></span><br></pre></td></tr></table></figure></p>
+<p>执行<br><code>npm config delete registry</code>即可</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webstorm/">webstorm</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/IDE相关/">IDE相关</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-nginx学习" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/10/13/nginx学习/" class="article-date">
+  	<time datetime="2015-10-13T03:10:21.000Z" itemprop="datePublished">2015-10-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/10/13/nginx学习/">nginx学习</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-_什么是nginx">1. 什么是nginx</h2><p>一个服务器软件，apache/tomcat/iis</p>
+<p>nginx是一款高性能的服务器软件<br>可以发布网站实现负载均衡，反向代理服务器<br>也可以是一个代理邮件服务器<br>负载均衡：为了减小服务器压力，需要将用户访问信息分别引像服务器集群，减小服务器压力，提高响应效率，避免服务器崩溃</p>
+<ul>
+<li>iis:只能部署在window上，不如linux做服务器好</li>
+<li>tomcat：面向java重量级</li>
+<li>apache：稳定、开源、跨平台，不支持高并发</li>
+<li>nginx：轻量，高性能、高并发，内存消耗少，成本低，rewrite功能不够强大，模块没有apache多</li>
+</ul>
+<h2 id="2-_nginx服务器搭建">2. nginx服务器搭建</h2><p>linux系统中搭建nginx服务器</p>
+<ol>
+<li>下载源码编译nginx-1.8.0.tar.gz  <code>tar -zxvf nginx-1.8.0.tar.gz</code></li>
+<li><code>cd nginx-1.8.0&amp;&amp;./config</code>(保证有gcc gcc-c++)</li>
+<li><code>make</code>(pre/lib模块安装)</li>
+<li><code>make install</code></li>
+</ol>
+<h2 id="3-_启动、停止、重载配置">3. 启动、停止、重载配置</h2><ol>
+<li><code>nginx -c  path/to/nginx.conf</code></li>
+<li><code>nginx -s stop或者nginx -s quit或者pkill -9 nginx</code></li>
+<li><code>nginx -s reload</code></li>
+<li>检查配置文件是否正确 <code>nginx -t</code></li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/web服务器/">web服务器</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
   
     <article id="post-gulp使用备忘" class="article article-type-post" itemscope itemprop="blogPost">
   
