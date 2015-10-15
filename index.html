@@ -116,7 +116,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/ReactNative/" style="font-size: 10px;">ReactNative</a> <a href="/tags/angular/" style="font-size: 10px;">angular</a> <a href="/tags/gulp/" style="font-size: 10px;">gulp</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/webstorm/" style="font-size: 10px;">webstorm</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+						<a href="/tags/ReactNative/" style="font-size: 10px;">ReactNative</a> <a href="/tags/angular/" style="font-size: 10px;">angular</a> <a href="/tags/gulp/" style="font-size: 10px;">gulp</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/pip/" style="font-size: 10px;">pip</a> <a href="/tags/webstorm/" style="font-size: 10px;">webstorm</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
 					</div>
 				</section>
 				
@@ -192,6 +192,73 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-判断点在面内" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/10/15/判断点在面内/" class="article-date">
+  	<time datetime="2015-10-15T04:46:00.000Z" itemprop="datePublished">2015-10-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/10/15/判断点在面内/">判断点在面内</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前几天同事想实现地理围栏，其实地理围栏就是对进入的每个点判断是否在面内，之前一直是使用postgis的st_contains函数来实现，但是同事说用的是sqlserver，不装空间数据库扩展的话，只能自己实现算法了。<br>查阅了一些资料，大部分都是垂线法，也是学习地理信息系统原理时最常见的算法，不是很想用，于是又谷歌百度了一些关键字，终于在stackworkflow上一个非常好的算法<a href="http://stackoverflow.com/questions/217578/point-in-polygon-aka-hit-test/基于" target="_blank" rel="external">http://stackoverflow.com/questions/217578/point-in-polygon-aka-hit-test/基于</a><br><a href="http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html" target="_blank" rel="external">http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html</a>这个的实现</p>
+<p>先看下算法的表示图<br><img src="/img/pip.gif" alt="算法图"></p>
+<p> 针对这些特殊情况，在对多边形的每条边进行判断时，要考虑以下这些特殊情况，假设当前处理的边是P1P2，则有以下原则：</p>
+<p>1）如果点P在边P1P2上，则直接判定点P在多边形内；</p>
+<p>2）如果从P发出的射线正好穿过P1或者P2，那么这个交点会被算作2次（因为在处理以P1或P2为端点的其它边时可能已经计算过这个点了），对这种情况的处理原则是：如果P的y坐标与P1、P2中较小的y坐标相同，则忽略这个交点；</p>
+<p>3）如果从P发出的射线与P1P2平行，则忽略这条边；</p>
+<p> 对于第三个原则，需要判断两条直线是否平行，通常的方法是计算两条直线的斜率，但是本算法因为只涉及到直线段（射线也被模型简化为长线段了），就简化了 很多，判断直线是否水平，只要比较一下线段起始点的y坐标是否相等就行了，而判断直线是否垂直，也只要比较一下线段起始点的x坐标是否相等就行了。</p>
+<p> 下面是js版本的实现</p>
+ <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">pip</span><span class="params">(point, vs)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// ray-casting algorithm based on</span></span><br><span class="line">    <span class="comment">// http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> x = point[<span class="number">0</span>], y = point[<span class="number">1</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> inside = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, j = vs.length - <span class="number">1</span>; i &lt; vs.length; j = i++) &#123;</span><br><span class="line">        <span class="keyword">var</span> xi = vs[i][<span class="number">0</span>], yi = vs[i][<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">var</span> xj = vs[j][<span class="number">0</span>], yj = vs[j][<span class="number">1</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">var</span> intersect = ((yi &gt; y) != (yj &gt; y))</span><br><span class="line">            &amp;&amp; (x &lt; (xj - xi) * (y - yi) / (yj - yi) + xi);<span class="comment">//后面的是两点的直线方程算直线上的点的坐标，x&lt;右边的值的意思是表示左边的点</span></span><br><span class="line">        <span class="keyword">if</span> (intersect) inside = !inside;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> inside;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pip/">pip</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/算法相关/">算法相关</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-webstorm相关问题" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -235,6 +302,69 @@
       
 	<div class="article-category tagcloud">
 	<a class="article-category-link" href="/categories/IDE相关/">IDE相关</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-AngularJS笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/10/13/AngularJS笔记/" class="article-date">
+  	<time datetime="2015-10-13T03:10:21.000Z" itemprop="datePublished">2015-10-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/10/13/AngularJS笔记/">AngularJS  emit、 on、broadcast区别</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>$emit只能向parent controller传递event与data</li>
+<li>$broadcast只能向child controller传递event与data</li>
+<li>$on用于接收event与data</li>
+</ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angular/">angular</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/技术相关/">技术相关</a>
 	</div>
 
 
@@ -314,69 +444,6 @@
       
 	<div class="article-category tagcloud">
 	<a class="article-category-link" href="/categories/web服务器/">web服务器</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-AngularJS笔记" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/10/13/AngularJS笔记/" class="article-date">
-  	<time datetime="2015-10-13T03:10:21.000Z" itemprop="datePublished">2015-10-13</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/10/13/AngularJS笔记/">AngularJS  emit、 on、broadcast区别</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>$emit只能向parent controller传递event与data</li>
-<li>$broadcast只能向child controller传递event与data</li>
-<li>$on用于接收event与data</li>
-</ul>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angular/">angular</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/技术相关/">技术相关</a>
 	</div>
 
 

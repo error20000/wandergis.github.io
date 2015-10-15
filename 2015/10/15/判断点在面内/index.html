@@ -3,36 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>gulp使用备忘 | 记忆的残骸</title>
+  <title>判断点在面内 | 记忆的残骸</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="gulp使用备忘指南1. gulp安装首先你需要有一个node环境1npm install gulp -g
-这样会有一个全局的gulp的cli命令
-2. gulp项目中使用
-在项目的根目录新建一个gulpfile.js的文件touch gulpfile.js
-在项目根目录运行npm install --save-dev gulp
-编辑gulpfile.js
-12345var gulp = requ">
+  <meta name="description" content="前几天同事想实现地理围栏，其实地理围栏就是对进入的每个点判断是否在面内，之前一直是使用postgis的st_contains函数来实现，但是同事说用的是sqlserver，不装空间数据库扩展的话，只能自己实现算法了。查阅了一些资料，大部分都是垂线法，也是学习地理信息系统原理时最常见的算法，不是很想用，于是又谷歌百度了一些关键字，终于在stackworkflow上一个非常好的算法http://sta">
 <meta property="og:type" content="article">
-<meta property="og:title" content="gulp使用备忘">
-<meta property="og:url" content="http://wandergis.github.io/2015/10/13/gulp使用备忘/index.html">
+<meta property="og:title" content="判断点在面内">
+<meta property="og:url" content="http://wandergis.github.io/2015/10/15/判断点在面内/index.html">
 <meta property="og:site_name" content="记忆的残骸">
-<meta property="og:description" content="gulp使用备忘指南1. gulp安装首先你需要有一个node环境1npm install gulp -g
-这样会有一个全局的gulp的cli命令
-2. gulp项目中使用
-在项目的根目录新建一个gulpfile.js的文件touch gulpfile.js
-在项目根目录运行npm install --save-dev gulp
-编辑gulpfile.js
-12345var gulp = requ">
-<meta property="og:updated_time" content="2015-10-13T01:49:16.000Z">
+<meta property="og:description" content="前几天同事想实现地理围栏，其实地理围栏就是对进入的每个点判断是否在面内，之前一直是使用postgis的st_contains函数来实现，但是同事说用的是sqlserver，不装空间数据库扩展的话，只能自己实现算法了。查阅了一些资料，大部分都是垂线法，也是学习地理信息系统原理时最常见的算法，不是很想用，于是又谷歌百度了一些关键字，终于在stackworkflow上一个非常好的算法http://sta">
+<meta property="og:image" content="http://wandergis.github.io/img/pip.gif">
+<meta property="og:updated_time" content="2015-10-15T04:53:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="gulp使用备忘">
-<meta name="twitter:description" content="gulp使用备忘指南1. gulp安装首先你需要有一个node环境1npm install gulp -g
-这样会有一个全局的gulp的cli命令
-2. gulp项目中使用
-在项目的根目录新建一个gulpfile.js的文件touch gulpfile.js
-在项目根目录运行npm install --save-dev gulp
-编辑gulpfile.js
-12345var gulp = requ">
+<meta name="twitter:title" content="判断点在面内">
+<meta name="twitter:description" content="前几天同事想实现地理围栏，其实地理围栏就是对进入的每个点判断是否在面内，之前一直是使用postgis的st_contains函数来实现，但是同事说用的是sqlserver，不装空间数据库扩展的话，只能自己实现算法了。查阅了一些资料，大部分都是垂线法，也是学习地理信息系统原理时最常见的算法，不是很想用，于是又谷歌百度了一些关键字，终于在stackworkflow上一个非常好的算法http://sta">
   
     <link rel="alternative" href="/atom.xml" title="记忆的残骸" type="application/atom+xml">
   
@@ -209,11 +192,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-gulp使用备忘" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-判断点在面内" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/10/13/gulp使用备忘/" class="article-date">
-  	<time datetime="2015-10-13T01:34:53.000Z" itemprop="datePublished">2015-10-13</time>
+      <a href="/2015/10/15/判断点在面内/" class="article-date">
+  	<time datetime="2015-10-15T04:46:00.000Z" itemprop="datePublished">2015-10-15</time>
 </a>
     </div>
   
@@ -226,7 +209,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      gulp使用备忘
+      判断点在面内
     </h1>
   
 
@@ -235,12 +218,12 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gulp/">gulp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pip/">pip</a></li></ul>
 	</div>
 
         
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/技术相关/">技术相关</a>
+	<a class="article-category-link" href="/categories/算法相关/">算法相关</a>
 	</div>
 
 
@@ -250,20 +233,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="gulp使用备忘指南">gulp使用备忘指南</h1><h2 id="1-_gulp安装">1. gulp安装</h2><p>首先你需要有一个node环境<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> gulp -<span class="keyword">g</span></span></span><br></pre></td></tr></table></figure></p>
-<p>这样会有一个全局的gulp的cli命令</p>
-<h2 id="2-_gulp项目中使用">2. gulp项目中使用</h2><ol>
-<li>在项目的根目录新建一个gulpfile.js的文件<code>touch gulpfile.js</code></li>
-<li>在项目根目录运行<code>npm install --save-dev gulp</code></li>
-<li><p>编辑gulpfile.js</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'default'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 将你的默认的任务代码放在这</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="3-_插件使用">3. 插件使用</h2><h3 id="代码压缩加密">代码压缩加密</h3><p>插件安装</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> gulp-<span class="keyword">concat</span> gulp-uglify gulp-watch <span class="comment">--save-dev</span></span></span><br></pre></td></tr></table></figure>
-<p>修改gulpfile.js</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</span><br><span class="line"><span class="comment">//压缩js代码</span></span><br><span class="line"><span class="keyword">var</span> uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//合并js文件</span></span><br><span class="line"><span class="keyword">var</span> concat = <span class="built_in">require</span>(<span class="string">'gulp-concat'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> paths = &#123;</span><br><span class="line">  scripts: [<span class="string">'public/javascripts/*.js'</span>]</span><br><span class="line">&#125;;</span><br><span class="line">gulp.task(<span class="string">'watch'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  gulp.watch(paths.scripts, [<span class="string">'default'</span>]);</span><br><span class="line">&#125;);</span><br><span class="line">gulp.task(<span class="string">'default'</span>,[<span class="string">'watch'</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  gulp.src(paths.scripts)</span><br><span class="line">    .pipe(uglify())</span><br><span class="line">    .pipe(concat(<span class="string">'all.min.js'</span>))</span><br><span class="line">    .pipe(gulp.dest(<span class="string">'build'</span>));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p><code>gulp</code>执行，就可以监听public/javascripts目录下面的js文件修改变动，并自动合并压缩</p>
+        <p>前几天同事想实现地理围栏，其实地理围栏就是对进入的每个点判断是否在面内，之前一直是使用postgis的st_contains函数来实现，但是同事说用的是sqlserver，不装空间数据库扩展的话，只能自己实现算法了。<br>查阅了一些资料，大部分都是垂线法，也是学习地理信息系统原理时最常见的算法，不是很想用，于是又谷歌百度了一些关键字，终于在stackworkflow上一个非常好的算法<a href="http://stackoverflow.com/questions/217578/point-in-polygon-aka-hit-test/基于" target="_blank" rel="external">http://stackoverflow.com/questions/217578/point-in-polygon-aka-hit-test/基于</a><br><a href="http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html" target="_blank" rel="external">http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html</a>这个的实现</p>
+<p>先看下算法的表示图<br><img src="/img/pip.gif" alt="算法图"></p>
+<p> 针对这些特殊情况，在对多边形的每条边进行判断时，要考虑以下这些特殊情况，假设当前处理的边是P1P2，则有以下原则：</p>
+<p>1）如果点P在边P1P2上，则直接判定点P在多边形内；</p>
+<p>2）如果从P发出的射线正好穿过P1或者P2，那么这个交点会被算作2次（因为在处理以P1或P2为端点的其它边时可能已经计算过这个点了），对这种情况的处理原则是：如果P的y坐标与P1、P2中较小的y坐标相同，则忽略这个交点；</p>
+<p>3）如果从P发出的射线与P1P2平行，则忽略这条边；</p>
+<p> 对于第三个原则，需要判断两条直线是否平行，通常的方法是计算两条直线的斜率，但是本算法因为只涉及到直线段（射线也被模型简化为长线段了），就简化了 很多，判断直线是否水平，只要比较一下线段起始点的y坐标是否相等就行了，而判断直线是否垂直，也只要比较一下线段起始点的x坐标是否相等就行了。</p>
+<p> 下面是js版本的实现</p>
+ <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">pip</span><span class="params">(point, vs)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// ray-casting algorithm based on</span></span><br><span class="line">    <span class="comment">// http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> x = point[<span class="number">0</span>], y = point[<span class="number">1</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> inside = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, j = vs.length - <span class="number">1</span>; i &lt; vs.length; j = i++) &#123;</span><br><span class="line">        <span class="keyword">var</span> xi = vs[i][<span class="number">0</span>], yi = vs[i][<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">var</span> xj = vs[j][<span class="number">0</span>], yj = vs[j][<span class="number">1</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">var</span> intersect = ((yi &gt; y) != (yj &gt; y))</span><br><span class="line">            &amp;&amp; (x &lt; (xj - xi) * (y - yi) / (yj - yi) + xi);<span class="comment">//后面的是两点的直线方程算直线上的点的坐标，x&lt;右边的值的意思是表示左边的点</span></span><br><span class="line">        <span class="keyword">if</span> (intersect) inside = !inside;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> inside;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -273,18 +251,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/10/13/nginx学习/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          nginx学习
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/09/28/Node实现串行化流程控制/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Node实现串行化流程控制</div>
+    <a href="/2015/10/13/webstorm相关问题/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">webstorm相关问题</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -309,7 +278,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="gulp使用备忘" data-title="gulp使用备忘" data-url="http://wandergis.github.io/2015/10/13/gulp使用备忘/"></div>
+	<div class="ds-thread" data-thread-key="判断点在面内" data-title="判断点在面内" data-url="http://wandergis.github.io/2015/10/15/判断点在面内/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
