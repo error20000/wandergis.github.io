@@ -123,8 +123,7 @@
     <entry>
       <title><![CDATA[常用互联网坐标转换]]></title>
       <url>http://wandergis.com/2016/09/15/%E5%B8%B8%E7%94%A8%E4%BA%92%E8%81%94%E7%BD%91%E5%9D%90%E6%A0%87%E8%BD%AC%E6%8D%A2/</url>
-      <content type="html"><![CDATA[<hr>
-<p>一个提供了百度坐标（BD09）、国测局坐标（火星坐标，GCJ02）、和WGS84坐标系之间的转换的工具模块(支持node、浏览器(AMD方式和直接引用方式)。<br><a id="more"></a><br>python版本：<a href="https://github.com/wandergis/coordTransform_py" target="_blank" rel="external">https://github.com/wandergis/coordTransform_py</a><br>命令行版本：<a href="https://github.com/wandergis/coordtransform-cli" target="_blank" rel="external">https://github.com/wandergis/coordtransform-cli</a></p>
+      <content type="html"><![CDATA[<p>一个提供了百度坐标（BD09）、国测局坐标（火星坐标，GCJ02）、和WGS84坐标系之间的转换的工具模块(支持node、浏览器(AMD方式和直接引用方式)。<br><a id="more"></a><br>python版本：<a href="https://github.com/wandergis/coordTransform_py" target="_blank" rel="external">https://github.com/wandergis/coordTransform_py</a><br>命令行版本：<a href="https://github.com/wandergis/coordtransform-cli" target="_blank" rel="external">https://github.com/wandergis/coordtransform-cli</a></p>
 <h2 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h2><ul>
 <li>GitHub地址：<a href="https://github.com/wandergis/coordtransform" target="_blank" rel="external">https://github.com/wandergis/coordtransform</a></li>
 <li>npm地址：<a href="https://www.npmjs.com/package/coordtransform" target="_blank" rel="external">https://www.npmjs.com/package/coordtransform</a></li>
