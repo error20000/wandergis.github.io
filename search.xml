@@ -4,6 +4,22 @@
   
     
     <entry>
+      <title><![CDATA[Mac下命令行科学上网神器]]></title>
+      <url>http://wandergis.com/2016/09/17/Mac%E4%B8%8B%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E7%A5%9E%E5%99%A8/</url>
+      <content type="html"><![CDATA[<p>一直苦于不能在命令行下进行科学上网，很多被qiang的<code>node</code>包也只能另辟蹊径去下载，即便有<code>cnpm</code>这样的神器，还是不能彻底解决问题。</p>
+<p>就在前不久，终于发现了一大神器<a href="https://github.com/rofl0r/proxychains-ng" target="_blank" rel="external"><code>proxychains-ng</code></a>，让人欲罢不能，前所未有的爽。</p>
+<a id="more"></a>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>笔者使用的mac，有另外一大神器<code>Homebrew</code>（自行搜索安装方法）</p>
+<p><code>brew install proxychains-ng</code></p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>使用vim或者其他文本编辑器打开<code>/usr/local/etc/proxychains.conf</code>，在末尾注释掉原来的并添加</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># defaults set to "tor"</span></div><div class="line"><span class="comment">#socks5  127.0.0.1 8090</span></div><div class="line">socks5  <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> <span class="number">1080</span></div></pre></td></tr></table></figure>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>在任何需要科学上网的命令前面加上<code>proxychains4</code>即可</p>
+<p>如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">proxychains4 npm install sass</div><div class="line">proxychains4 curl youtube.com</div></pre></td></tr></table></figure>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[CSS命名规范（规则）]]></title>
       <url>http://wandergis.com/2016/09/15/CSS%E5%91%BD%E5%90%8D/</url>
       <content type="html"><![CDATA[<p>记录常用的一些css命名规则.<br><a id="more"></a></p>
